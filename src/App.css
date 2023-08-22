@@ -1,0 +1,46 @@
+/* src/App.css */
+
+/* loginForm css */
+.App {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f0f0;
+  margin: 0;
+}
+
+.form-container {
+  background-color: rgb(165, 195, 221);
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow:  0px 3px 6px;
+  width: 300px;
+  text-align: center;
+}
+
+.form-container h2 {
+  margin-bottom: 20px;
+}
+
+.form-container form {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-container input {
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.form-container button{
+  background-color: #007ACC;
+  color:#fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor:  pointer;
+}
+
