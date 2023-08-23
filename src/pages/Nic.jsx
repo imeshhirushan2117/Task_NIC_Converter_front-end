@@ -1,102 +1,155 @@
 import React, { useState } from "react";
+import $ from "jquery";
 
-const Nic = () => {
-    const[nic, setNic] = useState("")
-    const [gender, setGender] = useState("")
-    const [year, setYear] = useState("")
-    const [month, setMonth] = useState("")
-    const [day, setDay] = useState("")
-    const [error, setError] = useState("")
+function Converter() {
+  const [error, setError] = useState("");
+  const [gender, setGender] = useState("");
+  const [year, setYear] = useState("");
+  const [month, setMonth] = useState("");
+  const [day, setDay] = useState("");
 
-    const handleNicChange = (event) => {
-        const nicValue = event.target.value
-        setNic(nicValue)
+  const handleFindClick = () => {
+    setError("");
+    setGender("");
+    setYear("");
+    setMonth("");
+    setDay("");
 
-        const dayText = parseInt(nicValue.substring(0, 9))
-        let nicError = ""
-        let nicGender = ""
-        let nicYear = ""
-        let nicMonth = ""
-        let nicDay = ""
-    
-        if(nicValue.length !==10 && nicValue !==12){
-            nicError = "Invalid NIC NO"
-        }else if(!/^\d+$/.test(nicValue(0, 9))){
-            nicError = "Invalid NIC No";
-        }else{
+    const NICNo = $("#nic").val();
+    let dayText = 0;
+    let birthYear = "";
+    let birthMonth = "";
+    let birthDay = "";
+    let genderText = "";
 
-            //Gender
+    if (NICNo.length !== 10 && NICNo.length !== 12) {
+      setError("Invalid NIC NO");
+    } else if (NICNo.length === 10 && !$.isNumeric(NICNo.substr(0, 9))) {
+      setError("Invalid NIC NO");
+    } else {
+      $(document).ready(function () {
+        $("#find").click(function () {
+          //Clear Existing Details
+          $("#error").html("");
+          $("#gender").html("");
+          $("#year").html("");
+          $("#month").html("");
+          $("#day").html("");
 
-            if(dayText > 500 ){
-                nicGender = "Female"
-                dayText = dayText - 500 
-            }else{
-                nicGender = "Male"
+          var NICNo = $("#nic").val();
+          var dayText = 0;
+          var year = "";
+          var month = "";
+          var day = "";
+          var gender = "";
+          if (NICNo.length != 10 && NICNo.length != 12) {
+            $("#error").html("Invalid NIC NO");
+          } else if (NICNo.length == 10 && !$.isNumeric(NICNo.substr(0, 9))) {
+            $("#error").html("Invalid NIC NO");
+          } else {
+            // Year
+            if (NICNo.length == 10) {
+              year = "19" + NICNo.substr(0, 2);
+              dayText = parseInt(NICNo.substr(2, 3));
+            } else {
+              year = NICNo.substr(0, 4);
+              dayText = parseInt(NICNo.substr(4, 3));
             }
 
-            //Year 
-            if(nicValue.length === 10){
-                nicYear = "19" + nicValue.substring(0, 2)
-            }else{
-                nicYear = nicValue.substring(0, 4)
+            // Gender
+            if (dayText > 500) {
+              gender = "Female";
+              dayText = dayText - 500;
+            } else {
+              gender = "Male";
             }
 
-            //Day & month
-            if(dayText > 335){
-                nicDay = dayText - 335
-                nicMonth  = "December"
+            if (dayText < 1 && dayText > 366) {
+              $("#error").html("Invalid NIC NO");
+            } else {
+              //Month
+              if (dayText > 335) {
+                day = dayText - 335;
+                month = "December";
+              } else if (dayText > 305) {
+                day = dayText - 305;
+                month = "November";
+              } else if (dayText > 274) {
+                day = dayText - 274;
+                month = "October";
+              } else if (dayText > 244) {
+                day = dayText - 244;
+                month = "September";
+              } else if (dayText > 213) {
+                day = dayText - 213;
+                month = "Auguest";
+              } else if (dayText > 182) {
+                day = dayText - 182;
+                month = "July";
+              } else if (dayText > 152) {
+                day = dayText - 152;
+                month = "June";
+              } else if (dayText > 121) {
+                day = dayText - 121;
+                month = "May";
+              } else if (dayText > 91) {
+                day = dayText - 91;
+                month = "April";
+              } else if (dayText > 60) {
+                day = dayText - 60;
+                month = "March";
+              } else if (dayText < 32) {
+                month = "January";
+                day = dayText;
+              } else if (dayText > 31) {
+                day = dayText - 31;
+                month = "Febuary";
+              }
 
-            }else if (dayText > 305){
-                nicDay = dayText -305
-                nicMonth = "November"
-
-            }else if (dayText > 274){
-                nicDay = dayText - 274
-                nicMonth = "October"    
-
-            }else if(dayText > 244){
-                nicDay = dayText - 244
-                nicMonth = "September"
-
-            }else if(dayText > 213){
-                nicDay = dayText - 213
-                nicMonth = "Auguest"
-
-            }else if(dayText > 182){
-                nicDay = dayText - 182
-                nicMonth = "July"
-
-            }else if (dayText > 152){
-                nicDay = dayText -152
-                nicMonth = "June"
-
-            }else if (dayText > 121){
-                nicDay = dayText - 121
-                nicMonth = "May";
-
-            }else if (dayText > 91){
-                nicDay = dayText - 91
-                nicMonth = "April"
-
-            }else if (dayText > 60){
-                nicDay = dayText - 60
-                nicMonth = "March"
-
-            }else if(dayText > 31){
-                nicDay = dayText - 31
-                nicMonth = "Febuary";
-
-            }else if (dayText < 32 ){
-                nicMonth = "January"
-                nicDay = dayText
+              // Show Details
+              $("#gender").html("Gender : " + gender);
+              $("#year").html("Year : " + year);
+              $("#month").html("Month : " + month);
+              $("#day").html("Day :" + day);
             }
+          }
+        });
+      });
 
-        }
-
-        setError(nicError)
-        setGender(nicGender)
-        setYear(nicYear)
-        setMonth(nicMonth)
-        setDay(nicDay)
+      // setGender(`Gender: ${genderText}`);
+      // setYear(`Year: ${birthYear}`);
+      // setMonth(`Month: ${birthMonth}`);
+      // setDay(`Day: ${birthDay}`);
     }
+  };
+
+  return (
+    <center>
+      <p style={{ color: "#000" }}>NIC Birth Day Finder</p>
+      <p style={{ color: "#000" }}>Both New & Old Format</p>
+      <input type="text" id="nic" />
+      <button id="find" onClick={handleFindClick}>
+        Find
+      </button>
+      <br />
+      <br />
+      <p id="error" style={{ color: "red" }}>
+        {error}
+      </p>
+      <p id="gender" style={{ color: "#000" }}>
+        {gender}
+      </p>
+      <p id="year" style={{ color: "#000" }}>
+        {year}
+      </p>
+      <p id="month" style={{ color: "#000" }}>
+        {month}
+      </p>
+      <p id="day" style={{ color: "#000" }}>
+        {day}
+      </p>
+    </center>
+  );
 }
+
+export default Converter;

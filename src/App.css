@@ -1,4 +1,3 @@
-/* src/App.css */
 
 /* loginForm css */
 .App {
@@ -35,6 +34,7 @@
   border-radius: 5px;
 }
 
+
 .form-container button{
   background-color: #007ACC;
   color:#fff;
@@ -44,3 +44,19 @@
   cursor:  pointer;
 }
 
+/* NIC Form css */
+
+.form-container{
+  animation: fadeInUP 0.5s both;
+}
+
+@keyframes fadeInUp {
+  from{
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to{
+    opacity: 1;
+    transform: translateY();
+  }
+}
