@@ -29,7 +29,7 @@ function Converter() {
     } else {
       $(document).ready(function () {
         $("#find").click(function () {
-          //Clear Existing Details
+          
           $("#error").html("");
           $("#gender").html("");
           $("#year").html("");
@@ -42,6 +42,7 @@ function Converter() {
           var month = "";
           var day = "";
           var gender = "";
+
           if (NICNo.length != 10 && NICNo.length != 12) {
             $("#error").html("Invalid NIC NO");
           } else if (NICNo.length == 10 && !$.isNumeric(NICNo.substr(0, 9))) {
@@ -50,7 +51,7 @@ function Converter() {
             // Year
             if (NICNo.length == 10) {
               year = "19" + NICNo.substr(0, 2);
-              dayText = parseInt(NICNo.substr(2, 3));
+              dayText = parseInt(NICNo.substr(2, 3)); //
             } else {
               year = NICNo.substr(0, 4);
               dayText = parseInt(NICNo.substr(4, 3));
@@ -116,7 +117,8 @@ function Converter() {
         });
       });
 
-      // setGender(`Gender: ${genderText}`);
+      // 
+      //setGender(`Gender: ${genderText}`);
       // setYear(`Year: ${birthYear}`);
       // setMonth(`Month: ${birthMonth}`);
       // setDay(`Day: ${birthDay}`);
@@ -124,30 +126,44 @@ function Converter() {
   };
 
   return (
-    <center>
+    <center >
+    
       <p style={{ color: "#000" }}>NIC Birth Day Finder</p>
       <p style={{ color: "#000" }}>Both New & Old Format</p>
-      <input type="text" id="nic" />
-      <button id="find" onClick={handleFindClick}>
-        Find
-      </button>
+    
+   
+
+<div className="form-container">
+<input type="text" id="nic" placeholder="Nic Number"/>
+
+<button id="find" onClick={handleFindClick} >
+  Find
+</button>
+</div>
+
+     
       <br />
       <br />
       <p id="error" style={{ color: "red" }}>
         {error}
       </p>
-      <p id="gender" style={{ color: "#000" }}>
+     
+{/* <div className="form-container"> */}
+<p id="gender" style={{ color: "#000" }} className="form-container">
         {gender}
       </p>
-      <p id="year" style={{ color: "#000" }}>
+      <p id="year" style={{ color: "#000" }}className="form-container">
         {year}
       </p>
-      <p id="month" style={{ color: "#000" }}>
+      <p id="month" style={{ color: "#000" }}className="form-container">
         {month}
       </p>
-      <p id="day" style={{ color: "#000" }}>
+      <p id="day" style={{ color: "#000" }}className="form-container">
         {day}
       </p>
+{/* </div> */}
+
+
     </center>
   );
 }

@@ -45,10 +45,10 @@
 }
 
 /* NIC Form css */
-
 .form-container{
   animation: fadeInUP 0.5s both;
 }
+
 
 @keyframes fadeInUp {
   from{
@@ -60,3 +60,4 @@
     transform: translateY();
   }
 }
+

@@ -26,7 +26,7 @@ const Signup = () => {
     }));
   };
 
-  //dula code
+
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
@@ -63,12 +63,12 @@ const Signup = () => {
             placeholder="Contact"
             onChange={handleChange}
           />
-          <input
+          {/* <input
             type="text"
             name="email"
             placeholder="Email"
             onChange={handleChange}
-          />
+          /> */}
 
           <div>
             <input
@@ -84,7 +84,7 @@ const Signup = () => {
           <input
             type="text"
             name="username"
-            placeholder="Username"
+            placeholder="Email"
             onChange={handleChange}
           />
           <input

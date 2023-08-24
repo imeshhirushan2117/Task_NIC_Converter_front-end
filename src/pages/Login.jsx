@@ -11,7 +11,7 @@ const Login = () => {
           <input type="text" placeholder="Username" />
           <input type="password" placeholder="Password" />
           <button>
-            <Link to={""}  style={{ textDecoration: "none", color: "white"}}>Login</Link>
+            <Link to={"/signin"}  style={{ textDecoration: "none", color: "white"}}>Login</Link>
           </button>
         </form>
         <Link to={"/singup"} style={{ textDecoration: "none", color: "black"}}>Don't have an account? Register</Link>
